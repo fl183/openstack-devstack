@@ -1,0 +1,45 @@
+[[local|localrc]]
+
+MULTI_HOST=true
+# management & api network
+HOST_IP=172.27.34.38
+
+# Credentials
+ADMIN_PASSWORD=admin
+MYSQL_PASSWORD=loong576
+RABBIT_PASSWORD=loong576
+SERVICE_PASSWORD=loong576
+SERVICE_TOKEN=loong576
+
+# Service information
+SERVICE_HOST=172.27.34.37
+MYSQL_HOST=$SERVICE_HOST
+RABBIT_HOST=$SERVICE_HOST
+GLANCE_HOSTPORT=$SERVICE_HOST:9292
+Q_HOST=$SERVICE_HOST
+KEYSTONE_AUTH_HOST=$SERVICE_HOST
+KEYSTONE_SERVICE_HOST=$SERVICE_HOST
+
+ENABLED_SERVICES=n-cpu,q-agt,neutron
+Q_AGENT=linuxbridge
+ENABLE_TENANT_VLANS=True
+TENANT_VLAN_RANGE=3001:4000
+PHYSICAL_NETWORK=default
+
+# vnc config
+NOVA_VNC_ENABLED=True
+NOVNCPROXY_URL="http://$SERVICE_HOST:6080/vnc_auto.html"
+VNCSERVER_LISTEN=$HOST_IP
+VNCSERVER_PROXYCLIENT_ADDRESS=$VNCSERVER_LISTEN
+
+# Logging
+LOG_COLOR=True
+LOGDIR=$DEST/logs
+SCREEN_LOGDIR=$LOGDIR/screen
+
+# use TryStack git mirror
+GIT_BASE=http://git.trystack.cn
+NOVNC_REPO=http://git.trystack.cn/kanaka/noVNC.git
+SPICE_REPO=http://git.trystack.cn/git/spice/spice-html5.git
+
+enable_service placement-api

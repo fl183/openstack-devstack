@@ -1,0 +1,42 @@
+[[local|localrc]]
+
+MULTI_HOST=true
+# management & api network
+HOST_IP=172.27.34.37
+LOGFILE=/opt/stack/logs/stack.sh.log
+
+# Credentials
+ADMIN_PASSWORD=admin
+MYSQL_PASSWORD=loong576
+RABBIT_PASSWORD=loong576
+SERVICE_PASSWORD=loong576
+SERVICE_TOKEN=loong576
+
+# enable neutron-ml2-vlan
+disable_service n-net
+
+# Enable LBaaS v2
+enable_plugin neutron-lbaas https://git.openstack.org/openstack/neutron-lbaas stable/pike
+enable_plugin octavia https://git.openstack.org/openstack/octavia stable/pike
+enable_plugin neutron-lbaas-dashboard https://git.openstack.org/openstack/neutron-lbaas-dashboard stable/pike
+
+# enable FWaaS v2
+enable_plugin neutron-fwaas https://git.openstack.org/openstack/neutron-fwaas stable/pike
+enable_plugin neutron-fwaas-dashboard https://git.openstack.org/openstack/neutron-fwaas-dashboard stable/pike
+
+enable_service q-lbaasv2,octavia,o-cw,o-hk,o-hm,o-api,q-vpn,q-fwaas-v2,q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron
+
+Q_AGENT=linuxbridge
+ENABLE_TENANT_VLANS=True
+TENANT_VLAN_RANGE=3001:4000
+PHYSICAL_NETWORK=default
+
+# logging
+LOG_COLOR=True
+LOGDIR=$DEST/logs
+SCREEN_LOGDIR=$LOGDIR/screen
+
+# use TryStack git mirror
+GIT_BASE=http://git.trystack.cn
+NOVNC_REPO=http://git.trystack.cn/kanaka/noVNC.git
+SPICE_REPO=http://git.trystack.cn/git/spice/spice-html5.git
